@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "178763263356",
+    "project_id": "log-in-log-out-fb4ca",
+    "storage_bucket": "log-in-log-out-fb4ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178763263356:android:24f8417078ebdc546248f9",
+        "android_client_info": {
+          "package_name": "com.example.loginlogout"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_5fY59CwUdyuRtPZJ8SJeCurbBc9rwsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
