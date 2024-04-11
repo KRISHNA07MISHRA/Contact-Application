@@ -14,84 +14,35 @@
         android:layout_alignParentEnd="true"
         android:text="LOG OUT"
         android:id="@+id/logout"/>
-    <TextView
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
-        android:background="#9CCCF6"
-        android:id="@+id/view"/>
-    
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:hint="Enter Your Name Please"
-        android:id="@+id/name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
-        android:textColor="#1E88E5"
-        android:background="#F4B1AF"
-        android:textAllCaps="true"/>
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:hint="Enter Your Email Please"
-        android:id="@+id/emailaddress"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/name"
-        android:textColor="#1E88E5"
-        android:background="#F4B1AF"
-        android:inputType="textEmailAddress"
-        android:textAllCaps="true"/>
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:hint="Enter Your phone number Please"
-        android:id="@+id/phone"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/emailaddress"
-        android:textColor="#1E88E5"
-        android:background="#F4B1AF"
-        android:inputType="phone"
-        android:textAllCaps="true"/>
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:hint="Enter Your address "
-        android:id="@+id/address"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/phone"
-        android:textColor="#1E88E5"
-        android:background="#F4B1AF"
-        android:inputType="text"
-        android:textAllCaps="true"/>
 
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:hint="Enter Your Relation with this person "
-        android:id="@+id/relation"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/address"
-        android:textColor="#1E88E5"
-        android:background="#F4B1AF"
-        android:inputType="text"
-        android:textAllCaps="true"/>
+    
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/baseline_add_24"-->
+<!--        android:backgroundTint="#5A84AA"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:id="@+id/adding"-->
+<!--        android:layout_alignParentRight="true"/>-->
     <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:backgroundTint="#D179E8"
-        android:layout_below="@id/relation"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="32dp"
-        android:text="Save"
-        android:id="@+id/save"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/adding"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/baseline_add_24"
+        />
 
-    
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logout"
+        android:id="@+id/Recyclerview"
+        tools:listitem="@layout/design"
+        android:layout_above="@+id/adding"
+
+        />
+
     
     
         

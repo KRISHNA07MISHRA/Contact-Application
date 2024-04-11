@@ -1,4 +1,4 @@
-package com.example.Contact_Application
+package com.example.loginlogout
 
 import org.junit.Test
 

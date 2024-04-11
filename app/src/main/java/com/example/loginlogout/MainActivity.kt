@@ -1,4 +1,4 @@
-package com.example.Contact_Application
+package com.example.loginlogout
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(baseContext, "Successfully signed up.", Toast.LENGTH_SHORT)
                             .show()
 
-                        startActivity(Intent(this,Home::class.java))
+                        startActivity(Intent(this,LogIn::class.java))
                         finish()
                     } else {
                         // If sign in fails, display a message to the user.

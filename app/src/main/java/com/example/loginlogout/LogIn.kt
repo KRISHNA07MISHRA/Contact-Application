@@ -1,4 +1,4 @@
-package com.example.Contact_Application
+package com.example.loginlogout
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
@@ -16,6 +17,7 @@ class LogIn : AppCompatActivity() {
     lateinit var verifypassword: EditText
     lateinit var loginbutton: Button
     lateinit var loginsignup:Button
+    lateinit var forget:TextView
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +30,15 @@ class LogIn : AppCompatActivity() {
         verifypassword = findViewById(R.id.secondpassword)
         loginbutton = findViewById(R.id.loginbutton)
         loginsignup = findViewById(R.id.loginsingup)
+        forget = findViewById(R.id.forgetpassword)
         auth = FirebaseAuth.getInstance()
+
+        forget.setOnClickListener {
+            Toast.makeText(this,"KYA BHAI YAR CHAL KOI NA",Toast.LENGTH_LONG).show()
+
+            startActivity(Intent(this,forgetpassword::class.java))
+            finish()
+        }
 
         loginsignup.setOnClickListener {
             val move = Intent(this,MainActivity::class.java)

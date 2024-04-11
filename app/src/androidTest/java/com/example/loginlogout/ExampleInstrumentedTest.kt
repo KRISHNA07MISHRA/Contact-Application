@@ -1,4 +1,4 @@
-package com.example.Contact_Application
+package com.example.loginlogout
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
