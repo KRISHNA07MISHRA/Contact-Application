@@ -40,7 +40,7 @@ class Home : AppCompatActivity(),UserActionListener {
 
         buttonadding = findViewById(R.id.adding)
         recyclerview = findViewById(R.id.Recyclerview)
-        //specificuser = findViewById(R.id.specificlist)
+
         recyclerview.layoutManager = LinearLayoutManager(this)
 
         recyclerview.setHasFixedSize(true)
