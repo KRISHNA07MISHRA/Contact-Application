@@ -34,19 +34,15 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logout"
-        android:id="@+id/Recyclerview"
-        tools:listitem="@layout/design"
         android:layout_above="@+id/adding"
+        android:layout_below="@+id/logout"
+        android:layout_marginTop="0dp"
 
-        />
-
-    
-    
-        
-
+        android:layout_marginBottom="0dp"
+        tools:listitem="@layout/design" />
 
 
 </RelativeLayout>

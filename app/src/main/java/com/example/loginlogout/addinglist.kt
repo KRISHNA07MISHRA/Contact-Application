@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -24,6 +25,7 @@ class addinglist : AppCompatActivity() {
     lateinit var phone:EditText
     lateinit var relation:EditText
     lateinit var address:EditText
+    lateinit var backpress:FloatingActionButton
     
 
     private lateinit var database:DatabaseReference
@@ -40,6 +42,7 @@ class addinglist : AppCompatActivity() {
         phone = findViewById(R.id.phone)
         relation = findViewById(R.id.relation)
         address = findViewById(R.id.address)
+        backpress = findViewById(R.id.backpress)
 
 
 
@@ -49,7 +52,10 @@ class addinglist : AppCompatActivity() {
 
 
 
+        backpress.setOnClickListener{
+            startActivity(Intent(this,Home::class.java))
 
+        }
         save.setOnClickListener {
             val Name = name.text.toString()
             val Email = email.text.toString()
@@ -64,22 +70,11 @@ class addinglist : AppCompatActivity() {
                 startActivity(Intent(this,Home::class.java))
                 finish()
             }
-
-//            database.child("users").child(Name).get().addOnSuccessListener { snapshot ->
-//                if (snapshot.exists()) {
-//                    val user = snapshot.getValue(User::class.java)
-//                    // Set the fetched data to the TextView
-//                     val allvalue = listOf(Name,Email,Phone,Relation,address)
-//                    val adapter = ArrayAdapter(this,R.layout.activity_home,R.id.view,allvalue)
-//                    //view.text = "Name: ${Name}\nEmail: ${user?.Email}\nPhone: ${user?.phone}\nRelation: ${user?.relation}\nAddress: ${user?.address}"
-//                } else {
-//                    Toast.makeText(this, "No data found for $Name", Toast.LENGTH_LONG).show()
-//                }
-//            }.addOnFailureListener {
-//                Toast.makeText(this, "Failed to retrieve data", Toast.LENGTH_LONG).show()
-//            }
-
-
+            else{
+                Toast.makeText(this,"something is missing please check",Toast.LENGTH_LONG).show();
+                startActivity(Intent(this,Home::class.java))
+                finish()
+            }
 
 
         }

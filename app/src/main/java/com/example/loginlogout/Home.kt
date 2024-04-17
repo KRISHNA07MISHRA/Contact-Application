@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,9 +21,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
-class Home : AppCompatActivity() {
+class Home : AppCompatActivity(),UserActionListener {
 
     lateinit var logout: Button
+
 
     private lateinit var database:DatabaseReference
 
@@ -38,6 +40,7 @@ class Home : AppCompatActivity() {
 
         buttonadding = findViewById(R.id.adding)
         recyclerview = findViewById(R.id.Recyclerview)
+        //specificuser = findViewById(R.id.specificlist)
         recyclerview.layoutManager = LinearLayoutManager(this)
 
         recyclerview.setHasFixedSize(true)
@@ -49,6 +52,10 @@ class Home : AppCompatActivity() {
                 startActivity(Intent(this,addinglist::class.java))
 
             }
+//        specificuser.setOnClickListener{
+//            startActivity(Intent(this,showdata::class.java))
+//            finish()
+//        }
 
 
 
@@ -56,12 +63,6 @@ class Home : AppCompatActivity() {
         //setupRecyclerview()
 
           logout = findViewById(R.id.logout)
-
-
-
-
-
-
 
 
         logout.setOnClickListener {
@@ -83,7 +84,7 @@ class Home : AppCompatActivity() {
                         val user = userSnapshot.getValue(user_dataclass::class.java)
                         userArrayList.add(user!!)
                     }
-                    recyclerview.adapter = adapterclass(userArrayList)
+                    recyclerview.adapter = adapterclass(userArrayList,this@Home)
                 }
             }
 
@@ -92,6 +93,24 @@ class Home : AppCompatActivity() {
             }
 
         })
+    }
+
+    override fun onDeleteUser(user: user_dataclass, position: Int) {
+        val userId = user.name!!
+        FirebaseDatabase.getInstance().getReference("Users").child(userId).removeValue()
+            .addOnSuccessListener {
+                // Remove the user from the list and notify the adapter
+                userArrayList.removeAt(position)
+                recyclerview.adapter?.notifyItemRemoved(position)
+            }
+            .addOnFailureListener{
+                Toast.makeText(this,"failded",Toast.LENGTH_LONG).show()
+            }
+
+    }
+
+    override fun onUpdateUser(user: user_dataclass, position: Int) {
+
     }
 
 }
