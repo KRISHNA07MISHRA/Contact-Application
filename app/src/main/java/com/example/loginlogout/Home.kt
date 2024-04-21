@@ -4,6 +4,7 @@ package com.example.loginlogout
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -22,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
-class Home : AppCompatActivity(){
+class Home : AppCompatActivity(),adapterclass.OnItemClickListener{
 
     lateinit var logout: Button
 
@@ -33,7 +34,6 @@ class Home : AppCompatActivity(){
 
       private lateinit var recyclerview : RecyclerView
       private lateinit var userArrayList:ArrayList<user_dataclass>
-      //private lateinit var items:MutableList<user_dataclass>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +50,7 @@ class Home : AppCompatActivity(){
         userArrayList = arrayListOf<user_dataclass>()
         getUserData()
 
-        //items = mutableListOf()
+
 
         buttonadding.setOnClickListener {
                 startActivity(Intent(this,addinglist::class.java))
@@ -58,7 +58,7 @@ class Home : AppCompatActivity(){
             }
 
 
-          logout = findViewById(R.id.logout)
+        logout = findViewById(R.id.logout)
 
 
         logout.setOnClickListener {
@@ -66,6 +66,7 @@ class Home : AppCompatActivity(){
             startActivity(Intent(this,LogIn::class.java))
             finish()
         }
+
 
 
 
@@ -79,7 +80,7 @@ class Home : AppCompatActivity(){
                 override fun onDataChange(snapshot: DataSnapshot) {
                     userArrayList.clear()
                     snapshot.children.mapNotNullTo(userArrayList) { it.getValue(user_dataclass::class.java) }
-                    recyclerview.adapter = adapterclass(userArrayList)
+                    recyclerview.adapter = adapterclass(userArrayList,this@Home )
 
                 }
 
@@ -93,5 +94,43 @@ class Home : AppCompatActivity(){
         }
 
     }
+
+    override fun onItemdeleteClick(username: String) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if(userId != null){
+            val userRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child(username)
+            userRef.removeValue()
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Data deleted successfully!", Toast.LENGTH_LONG).show()
+                }
+                .addOnFailureListener {
+                    // Failed to remove data
+                    Toast.makeText(this, "Failed to delete data", Toast.LENGTH_LONG).show()
+                }
+        }
+    }
+
+    override fun onItemupdateclick(username: String) {
+        TODO("Not yet implemented")
+    }
+
+
+//    private fun deletefun(userName:String){
+//
+//        val userId = FirebaseAuth.getInstance().currentUser?.uid
+//
+//        if(userId!= null){
+//           // database = FirebaseDatabase.getInstance().getReference("users").child(userId)
+//            database!!.child("users").child(userId).child(userName).removeValue()
+//                .addOnSuccessListener {
+//                    Toast.makeText(this,"Success",Toast.LENGTH_LONG).show()
+//                }
+//                .addOnFailureListener{
+//                    Toast.makeText(this,"Sorry",Toast.LENGTH_LONG).show()
+//                }
+//        }
+//
+//
+//    }
 
 }
