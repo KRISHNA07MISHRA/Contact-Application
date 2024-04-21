@@ -8,11 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
-interface UserActionListener{
-    fun onDeleteUser(user:user_dataclass,position: Int)
-    fun onUpdateUser(user:user_dataclass,position: Int)
-}
-class adapterclass(private val userList: ArrayList<user_dataclass>,private val listener:UserActionListener) : RecyclerView.Adapter<adapterclass.MyViewHolder>() {
+
+class adapterclass(private val userList: ArrayList<user_dataclass>) : RecyclerView.Adapter<adapterclass.MyViewHolder>() {
 
 
     class  MyViewHolder(itemView:View) : RecyclerView.ViewHolder (itemView){
@@ -21,8 +18,7 @@ class adapterclass(private val userList: ArrayList<user_dataclass>,private val l
         val setaddress: TextView = itemView.findViewById(R.id.setaddress)
         val setphone : TextView = itemView.findViewById(R.id.setphone)
         val setrelation: TextView = itemView.findViewById(R.id.setrelation)
-        val deleteitem: FloatingActionButton = itemView.findViewById(R.id.deleteitem)
-        val updateitem:FloatingActionButton = itemView.findViewById(R.id.updateitem)
+
 
     }
 
@@ -44,12 +40,7 @@ class adapterclass(private val userList: ArrayList<user_dataclass>,private val l
         holder.setrelation.text = currentitem.relation
         holder.setname.text = currentitem.name
 
-        holder.deleteitem.setOnClickListener{
-            listener.onDeleteUser(currentitem,position)
-        }
-        holder.updateitem.setOnClickListener{
-            listener.onUpdateUser(currentitem,position)
-        }
+
     }
 
 

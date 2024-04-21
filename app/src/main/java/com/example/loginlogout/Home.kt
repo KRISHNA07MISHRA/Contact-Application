@@ -1,5 +1,6 @@
 package com.example.loginlogout
 
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
-class Home : AppCompatActivity(),UserActionListener {
+class Home : AppCompatActivity(){
 
     lateinit var logout: Button
 
@@ -32,6 +33,7 @@ class Home : AppCompatActivity(),UserActionListener {
 
       private lateinit var recyclerview : RecyclerView
       private lateinit var userArrayList:ArrayList<user_dataclass>
+      //private lateinit var items:MutableList<user_dataclass>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,19 +50,13 @@ class Home : AppCompatActivity(),UserActionListener {
         userArrayList = arrayListOf<user_dataclass>()
         getUserData()
 
+        //items = mutableListOf()
+
         buttonadding.setOnClickListener {
                 startActivity(Intent(this,addinglist::class.java))
 
             }
-//        specificuser.setOnClickListener{
-//            startActivity(Intent(this,showdata::class.java))
-//            finish()
-//        }
 
-
-
-
-        //setupRecyclerview()
 
           logout = findViewById(R.id.logout)
 
@@ -72,44 +68,29 @@ class Home : AppCompatActivity(),UserActionListener {
         }
 
 
+
    }
 
     private fun getUserData() {
-        database = FirebaseDatabase.getInstance().getReference("users")
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId != null) {
+            database = FirebaseDatabase.getInstance().getReference("users").child(userId)
+            database.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    userArrayList.clear()
+                    snapshot.children.mapNotNullTo(userArrayList) { it.getValue(user_dataclass::class.java) }
+                    recyclerview.adapter = adapterclass(userArrayList)
 
-        database.addValueEventListener(object:ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(userSnapshot in snapshot.children){
-                        val user = userSnapshot.getValue(user_dataclass::class.java)
-                        userArrayList.add(user!!)
-                    }
-                    recyclerview.adapter = adapterclass(userArrayList,this@Home)
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
 
-        })
-    }
+            })
 
-    override fun onDeleteUser(user: user_dataclass, position: Int) {
-        val userId = user.name!!
-        FirebaseDatabase.getInstance().getReference("Users").child(userId).removeValue()
-            .addOnSuccessListener {
-                // Remove the user from the list and notify the adapter
-                userArrayList.removeAt(position)
-                recyclerview.adapter?.notifyItemRemoved(position)
-            }
-            .addOnFailureListener{
-                Toast.makeText(this,"failded",Toast.LENGTH_LONG).show()
-            }
 
-    }
-
-    override fun onUpdateUser(user: user_dataclass, position: Int) {
+        }
 
     }
 

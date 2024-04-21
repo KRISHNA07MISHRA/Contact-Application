@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login"
+    android:background="#000000"
     tools:context=".LogIn">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log In"
+        android:text="Welcome"
         android:textSize="55dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
-        android:textColor="#1E88E5"
+        android:textColor="#ECF1F4"
         android:textStyle="bold|italic"
         android:id="@+id/wellcome"/>
     <EditText
@@ -24,8 +24,10 @@
         android:inputType="textEmailAddress"
         android:layout_below="@+id/wellcome"
         android:layout_centerHorizontal="true"
-        android:hint="Enter your Email"
+        android:hint="                         Enter your Email"
+        android:background="#fff"
         android:id="@+id/emaillogin"
+        android:backgroundTint="#ffff"
         android:layout_marginTop="12dp"
         />
     <EditText
@@ -33,10 +35,12 @@
         android:layout_height="70dp"
         android:layout_below="@+id/emaillogin"
         android:layout_centerHorizontal="true"
-        android:hint="Enter your Password"
+        android:hint="                      Enter your Password"
         android:inputType="textPassword"
         android:id="@+id/firstpassword"
         android:visibility="visible"
+        android:background="#ffff"
+        android:backgroundTint="#ffff"
         android:password="true"
         android:layout_marginTop="12dp"
         />
@@ -45,45 +49,49 @@
         android:layout_height="70dp"
         android:layout_below="@+id/firstpassword"
         android:layout_centerHorizontal="true"
-        android:hint="Verify the Password"
+        android:hint="                       Verify the Password"
         android:inputType="textPassword"
         android:id="@+id/secondpassword"
+        android:background="#fff"
+
         android:password="true"
         android:layout_marginTop="12dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/secondpassword"
+        android:layout_below="@+id/loginbutton"
+        android:textColor="#ECE4E4"
         android:text="Forget Password?"
+        android:background="#000"
+        android:textSize="21dp"
         android:layout_marginLeft="44dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@+id/loginsingup"
         android:id="@+id/forgetpassword"/>
 
     <Button
         android:id="@+id/loginbutton"
-        android:layout_width="120dp"
+        android:layout_width="340dp"
         android:layout_height="60dp"
         android:layout_below="@+id/secondpassword"
         android:layout_marginTop="39dp"
-        android:backgroundTint="#1E88E5"
+        android:backgroundTint="#3E3939"
         android:text="Log In"
+        android:layout_marginLeft="23dp"
 
         android:textSize="22dp"
-        android:layout_marginLeft="60dp"/>
+        />
 
     <Button
         android:layout_width="120dp"
         android:layout_height="60dp"
         android:id="@+id/loginsingup"
-
-
-        android:layout_toRightOf="@+id/loginbutton"
-        android:backgroundTint="#1E88E5"
-        android:layout_below="@+id/secondpassword"
-        android:layout_marginTop="39dp"
+        android:backgroundTint="#353637"
+        android:layout_below="@+id/loginbutton"
+        android:layout_marginTop="12dp"
         android:layout_marginLeft="22dp"
-        android:text="Sing Up"
+        android:text="Sign Up"
         android:textSize="19dp"/>
 
 

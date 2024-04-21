@@ -5,19 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/signup"
+    android:background="#000"
     tools:context=".MainActivity">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textSize="45dp"
+        android:text="Welcome"
+        android:textSize="65dp"
         android:textStyle="italic"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:textColor="#E32424"
+        android:textColor="#F4F1F1"
         android:layout_marginRight="22dp"/>
 
 
@@ -26,7 +26,7 @@
 
         android:layout_width="550dp"
 
-        android:layout_height="45dp"
+        android:layout_height="65dp"
         android:inputType="textEmailAddress"
 
         android:layout_alignParentStart="true"
@@ -35,15 +35,15 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="207dp"
         android:layout_marginEnd="35dp"
-        android:background="#439FF1"
-        android:hint="Enter your Email"
+        android:background="#EEF0F3"
+        android:hint="                      Enter your Email"
 
         android:textColorHint="#FFB300" />
 
     <EditText
         android:layout_width="550dp"
 
-        android:layout_height="45dp"
+        android:layout_height="65dp"
 
         android:layout_below="@+id/email"
         android:inputType="textPassword"
@@ -53,8 +53,8 @@
         android:layout_marginStart="27dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="34dp"
-        android:background="#439FF1"
-        android:hint="Enter your Password"
+        android:background="#F7F9FA"
+        android:hint="                     Enter your Password"
         android:password="true"
         android:id="@+id/password"
         android:textColorHint="#FFB300" />
@@ -63,25 +63,26 @@
         android:layout_width="150dp"
         android:layout_height="80dp"
 
-        android:backgroundTint="#4FC1F8"
+        android:backgroundTint="#060707"
         android:layout_below="@+id/password"
         android:id="@+id/button"
 
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="75dp"
         android:layout_centerHorizontal="true"
         android:text="SingUp"
         android:textSize="30dp"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#A5D0F6"
+        android:backgroundTint="#121313"
         android:text="Already Account?"
         android:layout_below="@+id/password"
         android:layout_marginLeft="32dp"
         android:textSize="20dp"
+
         android:id="@+id/movetologin"
-        android:layout_marginTop="11dp"
-        android:textColor="#221D1D"/>
+        android:layout_marginTop="18dp"
+        android:textColor="#E8E0E0"/>
 
 
 </RelativeLayout>

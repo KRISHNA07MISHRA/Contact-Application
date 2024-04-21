@@ -14,6 +14,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.database
 
 class addinglist : AppCompatActivity() {
@@ -63,10 +64,11 @@ class addinglist : AppCompatActivity() {
             val Relation = relation.text.toString()
             val address = address.text.toString()
 
-            writeNewUser(Name,Email,Phone,Relation,address)
-            User(Name,Email,Phone,Relation,address)
+
 
             if(Name.isNotBlank() && Email.isNotEmpty() && Phone.isNotEmpty() && Relation.isNotEmpty() && address.isNotEmpty()){
+                writeNewUser(Name,Email,Phone,Relation,address)
+                //Userinfo(Name,Email,Phone,Relation,address)
                 startActivity(Intent(this,Home::class.java))
                 finish()
             }
@@ -80,14 +82,29 @@ class addinglist : AppCompatActivity() {
         }
     }
 
-    fun writeNewUser(name:String,email:String,phone:String,Relation:String,address:String){
-        val user = User(name,email,phone,Relation,address)
-        database.child("users").child(name).setValue(user)
+    fun writeNewUser(name: String, email: String, phone: String, relation: String, address: String) {
+        // Get the current authenticated user
 
+        val User = auth.currentUser
 
+        if (User != null) {
+            val userId = User.uid  // This is the unique ID for the authenticated user
+            val user = Userinfo(name, email, phone, relation, address)
 
+            // Use the user's UID as the key to store user-specific data
+            database.child("users").child(userId).child(name).setValue(user)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Data saved successfully!", Toast.LENGTH_LONG).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Failed to save data", Toast.LENGTH_LONG).show()
+                }
+        } else {
+            Toast.makeText(this, "User is not authenticated", Toast.LENGTH_LONG).show()
+        }
     }
-    data class User(val Name: String?= null,val Email:String?=null,val phone:String? =null ,val relation:String? = null,val address:String?= null){
+
+    data class Userinfo(val Name: String?= null,val Email:String?=null,val phone:String? =null ,val relation:String? = null,val address:String?= null){
 
     }
 }
