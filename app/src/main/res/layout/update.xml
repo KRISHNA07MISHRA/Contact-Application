@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background = "@drawable/nature"
+    tools:context=".Home">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/updatebackpress"
+        android:src="@drawable/baseline_arrow_back_24"/>
+
+
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:hint="Enter Your Name Please"
+        android:id="@+id/updatename"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:textColor="#1E88E5"
+        android:background="#F4B1AF"
+        android:textAllCaps="true"/>
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:hint="Enter Your Email Please"
+        android:id="@+id/updateemailaddress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/updatename"
+        android:textColor="#1E88E5"
+        android:background="#F4B1AF"
+        android:inputType="textEmailAddress"
+        android:textAllCaps="true"/>
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:hint="Enter Your phone number Please"
+        android:id="@+id/updatephone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/updateemailaddress"
+        android:textColor="#1E88E5"
+        android:background="#F4B1AF"
+        android:inputType="phone"
+        android:textAllCaps="true"/>
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:hint="Enter Your address "
+        android:id="@+id/updateaddress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/updatephone"
+        android:textColor="#1E88E5"
+        android:background="#F4B1AF"
+        android:inputType="text"
+        android:textAllCaps="true"/>
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:hint="Enter Your Relation with this person "
+        android:id="@+id/updaterelation"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/updateaddress"
+        android:textColor="#1E88E5"
+        android:background="#F4B1AF"
+        android:inputType="text"
+        android:textAllCaps="true"/>
+
+    <Button
+        android:id="@+id/updatesave"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/updaterelation"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#D179E8"
+        android:text="Save" />
+
+</RelativeLayout>

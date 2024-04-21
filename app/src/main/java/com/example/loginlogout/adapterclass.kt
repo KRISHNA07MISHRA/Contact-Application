@@ -14,7 +14,7 @@ class adapterclass(private val userList: ArrayList<user_dataclass>, private val 
 
     interface OnItemClickListener{
         fun onItemdeleteClick(username:String)
-        fun onItemupdateclick(username: String)
+        fun onItemupdateclick(username: String,useremail:String,useraddress:String,userrelation:String,userphone:String)
     }
     class  MyViewHolder(itemView:View) : RecyclerView.ViewHolder (itemView){
         val setname: TextView = itemView.findViewById(R.id.setname)
@@ -52,6 +52,9 @@ class adapterclass(private val userList: ArrayList<user_dataclass>, private val 
 
         holder.deleteitem.setOnClickListener{
             ItemClickListener.onItemdeleteClick(currentitem.name!!)
+        }
+        holder.updateitem.setOnClickListener{
+            ItemClickListener.onItemupdateclick(currentitem.name!!,currentitem.email!!,currentitem.address!!,currentitem.relation!!,currentitem.phone!!)
         }
 
     }

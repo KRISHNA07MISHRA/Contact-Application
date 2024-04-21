@@ -4,12 +4,14 @@ package com.example.loginlogout
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -110,27 +112,64 @@ class Home : AppCompatActivity(),adapterclass.OnItemClickListener{
         }
     }
 
-    override fun onItemupdateclick(username: String) {
-        TODO("Not yet implemented")
+    override fun onItemupdateclick(username: String,useremail: String,useraddress: String,userrelation: String,userphone: String) {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.update,null)
+
+        val updatename = dialogView.findViewById<EditText>(R.id.updatename)
+        val updateaddress = dialogView.findViewById<EditText>(R.id.updateaddress)
+        val updaterelation = dialogView.findViewById<EditText>(R.id.updaterelation)
+        val updatephone = dialogView.findViewById<EditText>(R.id.updatephone)
+        val updateemail = dialogView.findViewById<EditText>(R.id.updateemailaddress)
+
+
+        updatename.setText(username)
+        updateaddress.setText(useraddress)
+        updateemail.setText(useremail)
+        updatephone.setText(userphone)
+        updaterelation.setText(userrelation)
+
+        val dialogBuilder = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setTitle("update user information")
+            .setPositiveButton("update"){dialog, _ ->
+
+
+                updatelist(updatename.text.toString(),updateemail.text.toString(),updateaddress.text.toString(),updatephone.text.toString(),updaterelation.text.toString())
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancel"){dialog,_->
+                dialog.dismiss()
+            }
+                val dialog = dialogBuilder.create()
+            dialog.show()
+
+
+
+
+
+
+
+
+
+
+    }
+
+    private fun updatelist(username: String, useremail: String, useraddress: String, userphone: String, userrelation: String) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if(userId != null){
+            val userRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child(username)
+            val updatelist = user_dataclass(useraddress,useremail,username,userphone,userrelation)
+            userRef.setValue(updatelist)
+                .addOnCompleteListener{
+                    if(it.isSuccessful){
+                        Toast.makeText(this,"succesful",Toast.LENGTH_LONG).show()
+                    }
+
+                }
+        }
     }
 
 
-//    private fun deletefun(userName:String){
-//
-//        val userId = FirebaseAuth.getInstance().currentUser?.uid
-//
-//        if(userId!= null){
-//           // database = FirebaseDatabase.getInstance().getReference("users").child(userId)
-//            database!!.child("users").child(userId).child(userName).removeValue()
-//                .addOnSuccessListener {
-//                    Toast.makeText(this,"Success",Toast.LENGTH_LONG).show()
-//                }
-//                .addOnFailureListener{
-//                    Toast.makeText(this,"Sorry",Toast.LENGTH_LONG).show()
-//                }
-//        }
-//
-//
-//    }
+
 
 }
